@@ -32,16 +32,17 @@ fun searchInsert(nums: IntArray, target: Int): Int {
         val midIndex = firstIndex + (lastIndex - firstIndex) / 2
 
         if (target > nums[midIndex]) {
-            firstIndex = midIndex
+            firstIndex = midIndex + 1
 
 
         } else {
-            lastIndex = midIndex
+            lastIndex = midIndex - 1
 
         }
 
 
     }
+
     return firstIndex
 }
 
