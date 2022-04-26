@@ -8,9 +8,9 @@ fun main() {
     val arrayL1 = arrayListOf(2, 4, 9)
     val arrayL2 = arrayListOf(5, 6, 4, 9)
 
-
+    search(intArrayOf(-1, 0, 3, 5, 9, 12), 9)
     println(firstBadVersion(5000))
-    println(lengthOfLongestSubString("adfvcvfgfv"))
+    println(lengthOfLongestSubString("checkString"))
     topKFrequent(intArrayOf(1, 5, 3, 5, 8, 8, 5), 5).print()
 
     addTwoNumbers(arrayToNodeList(arrayL1), arrayToNodeList(arrayL2))?.print()
@@ -23,6 +23,27 @@ fun main() {
     )
 }
 
+fun search(nums: IntArray, target: Int): Int {
+
+    var start = 0
+    var end = nums.size - 1
+
+    while (start <= end) {
+        val mid = start + (end - start) / 2
+        if (nums[mid] == target)
+
+
+            return mid
+        if ( target>nums[mid] )
+            start = mid + 1
+        else
+            end = mid - 1
+
+
+    }
+    return -1
+
+}
 
 fun searchInsert(nums: IntArray, target: Int): Int {
     var firstIndex = 0
