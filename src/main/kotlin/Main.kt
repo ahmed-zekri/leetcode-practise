@@ -1,4 +1,5 @@
 import java.util.*
+import kotlin.math.pow
 
 
 const val TARGET_BAD_VERSION = 5
@@ -23,6 +24,25 @@ fun main() {
     )
 }
 
+fun sortedSquares(nums: IntArray): IntArray {
+    val powMap = nums.map { num -> num.toDouble().pow(2.0).toInt() }
+
+    return powMap.toIntArray().sortedArray()
+}
+
+fun rotateArray(nums: IntArray, k: Int): Unit {
+    val numsCopy = nums.copyOf()
+    for (i in nums.indices) {
+        numsCopy[(i + k) % (nums.size)] = nums[i]
+
+    }
+    for (i in numsCopy.indices) {
+        nums[i] = numsCopy[i]
+
+    }
+}
+
+
 fun search(nums: IntArray, target: Int): Int {
 
     var start = 0
@@ -34,7 +54,7 @@ fun search(nums: IntArray, target: Int): Int {
 
 
             return mid
-        if ( target>nums[mid] )
+        if (target > nums[mid])
             start = mid + 1
         else
             end = mid - 1
@@ -212,3 +232,44 @@ fun arrayToNodeList(arrayL1: ArrayList<Int>): ListNode? {
 }
 
 fun isBadVersion(i: Int): Boolean = i >= TARGET_BAD_VERSION
+
+
+//NeetCode
+//*Easy
+fun containsDuplicate(nums: IntArray): Boolean = nums.toHashSet().size != nums.size
+fun isAnagram(s: String, t: String): Boolean = s.toList().sorted() == t.toList().sorted()
+fun twoSum(nums: IntArray, target: Int): IntArray {
+
+    var i = 0
+    var j = 0
+
+
+    while (j < nums.size) {
+        i++
+        if (i > nums.size - 1) {
+            j++
+            i = j
+
+
+        }
+
+        if (nums[i] + nums[j] == target && i != j)
+            return intArrayOf(i, j)
+
+
+    }
+    return intArrayOf()
+
+}
+
+//Two pointers
+//*Easy
+fun isPalindrome(s: String): Boolean {
+    var newString = ""
+    s.map {
+        if (it.isLetter() || it.isDigit())
+            newString += it
+    }
+    return newString.toUpperCase().reversed()==s.toUpperCase().reversed()
+
+}
