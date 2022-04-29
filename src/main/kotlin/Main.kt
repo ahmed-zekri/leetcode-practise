@@ -270,6 +270,6 @@ fun isPalindrome(s: String): Boolean {
         if (it.isLetter() || it.isDigit())
             newString += it
     }
-    return newString.toUpperCase().reversed()==s.toUpperCase().reversed()
+    return newString.toUpperCase().reversed()==s.toUpperCase()
 
 }
