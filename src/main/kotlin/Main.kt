@@ -6,22 +6,25 @@ const val TARGET_BAD_VERSION = 5
 
 
 fun main() {
-    val arrayL1 = arrayListOf(2, 4, 9)
-    val arrayL2 = arrayListOf(5, 6, 4, 9)
 
-    search(intArrayOf(-1, 0, 3, 5, 9, 12), 9)
-    println(firstBadVersion(5000))
-    println(lengthOfLongestSubString("checkString"))
-    topKFrequent(intArrayOf(1, 5, 3, 5, 8, 8, 5), 5).print()
-
-    addTwoNumbers(arrayToNodeList(arrayL1), arrayToNodeList(arrayL2))?.print()
-
-
-    println(
-        searchInsert(
-            intArrayOf(1, 3, 5, 6), 5
-        )
-    )
+    //    val arrayL1 = arrayListOf(2, 4, 9)
+//    val arrayL2 = arrayListOf(5, 6, 4, 9)
+//
+//    isPalindrome("8V8K;G;K;V;")
+//
+//    search(intArrayOf(-1, 0, 3, 5, 9, 12), 9)
+//    println(firstBadVersion(5000))
+//    println(lengthOfLongestSubString("checkString"))
+//    topKFrequent(intArrayOf(1, 5, 3, 5, 8, 8, 5), 5).print()
+//
+//    addTwoNumbers(arrayToNodeList(arrayL1), arrayToNodeList(arrayL2))?.print()
+//
+//
+//    println(
+//        searchInsert(
+//            intArrayOf(1, 3, 5, 6), 5
+//        )
+//    )
 }
 
 fun sortedSquares(nums: IntArray): IntArray {
@@ -265,11 +268,45 @@ fun twoSum(nums: IntArray, target: Int): IntArray {
 //Two pointers
 //*Easy
 fun isPalindrome(s: String): Boolean {
-    var newString = ""
-    s.map {
-        if (it.isLetter() || it.isDigit())
-            newString += it
+    var start = 0
+    var end = s.length - 1
+
+    while (start < end) {
+        while (start < end && !s[start].isDigit() && !s[start].isLetter())
+            start++
+        while (start < end && !s[end].isDigit() && !s[end].isLetter())
+            end--
+
+        if (s[start].toUpperCase() != s[end].toUpperCase())
+            return false
+
+        start++
+        end--
+
+
     }
-    return newString.toUpperCase().reversed()==s.toUpperCase()
+    return true
+}
+
+//Sliding window
+//*Easy
+fun maxProfit(prices: IntArray): Int {
+    var left = 0
+    var right = 0
+    var maxProfit = 0
+
+    while (left < prices.size && right < prices.size) {
+        if (prices[right] > prices[left]) {
+            if (prices[right] - prices[left] > maxProfit)
+                maxProfit = prices[right] - prices[left]
+        } else
+            left = right
+        right++
+
+
+    }
+
+    return maxProfit
+
 
 }
